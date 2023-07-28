@@ -1,0 +1,37 @@
+{
+  "name": "attenders",
+  "version": "1.0.0",
+  "description": "<p>\r With the onset of pandemic era many institution started following remote learning mode in which instructor take classes through online meeting platforms like zoom, google meet etc So that student can attend lecture by remain at home",
+  "main": "index.js",
+  "scripts": {
+    "start": "node index"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ultra-noobs/Attenders.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/ultra-noobs/Attenders/issues"
+  },
+  "homepage": "https://github.com/ultra-noobs/Attenders#readme",
+  "dependencies": {
+    "bcrypt": "^5.0.1",
+    "body-parser": "^1.19.0",
+    "cookie-parser": "^1.4.5",
+    "ejs": "^3.1.6",
+    "express": "^4.17.1",
+    "firebase-admin": "^9.5.0",
+    "http-errors": "^1.8.0",
+    "mongodb": "^3.6.4",
+    "mongoose": "^5.12.0",
+    "morgan": "^1.10.0",
+    "multer": "^1.4.2",
+    "node-cron": "^3.0.2",
+    "nodemailer": "^6.9.2",
+    "nodemon": "^2.0.7"
+  },
+  "devDependencies": {}
+}
