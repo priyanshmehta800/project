@@ -1,0 +1,185 @@
+<%- include('./partials/chore.ejs') -%>
+
+<link
+  rel="stylesheet"
+  href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+  integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T"
+  crossorigin="anonymous"
+/>
+<link rel="stylesheet" href="stylesheets/signup.css" />
+<div class="container mt-5">
+  <form method="POST" action="/student-register" enctype="multipart/form-data">
+  <h1>Student Registration</h1>
+    <label class="mt-2">First Name</label>
+    <input
+      type="first name"
+      placeholder="first name"
+      name="fname"
+      id="fname",
+      required
+    />
+    <label class="mt-2">Last Name</label>
+    <input
+      type="last name"
+      placeholder="lastname"
+      name="lname"
+      id="lname",
+      required
+    />
+    <label class="mt-2">Roll Number</label>
+    <input
+      type="text"
+      placeholder="Enter Your Roll Number."
+      name="roll_number"
+      id="roll_number"
+      required
+    />
+    <label class="mt-2">Email</label>
+    <input
+      type="email"
+      placeholder="Enter your email address."
+      name="usremail"
+      id="usremail",
+      required
+    />
+    <label class="mt-2">Parent Email</label>
+    <input
+      type="email"
+      placeholder="Enter your parent email address."
+      name="parentemail"
+      id="parentemail",
+      required
+    />
+    <label class="mt-2">Create Password</label>
+    <input
+      type="password"
+      placeholder="Enter password"
+      name="psw"
+      type="password" 
+      id="psw"
+      required
+    />
+    <label class="mt-2">Re-enter Password</label>
+    <input
+      type="password"
+      placeholder="Re enter password"
+      name="repsw"
+      id="repsw",
+      required
+    />
+    <p>Upload Your Picture Here</p>
+    <input type="file" name="image" accept="image/*" id="img-btn" required> 
+    <img id="student-image" alt="Your Image" height="240px" style="display: none;">
+    <button type="submit" class="btn mt-3" onclick="completionMessage()">Register</button>
+  </form>
+  <div id="message">
+    <h3 class="pass__head">Password must contain the following:</h3>
+    <p id="letter" class="invalid">A <b>lowercase</b> letter</p>
+    <p id="capital" class="invalid">A <b>capital (uppercase)</b> letter</p>
+    <p id="number" class="invalid">A <b>number</b></p>
+    <p id="length" class="invalid">Minimum <b>8 characters</b></p>
+  </div>
+</div>
+<script>
+//below code verifies password format
+var myInput = document.getElementById("psw");
+var letter = document.getElementById("letter");
+var capital = document.getElementById("capital");
+var number = document.getElementById("number");
+var length = document.getElementById("length");
+var img_btn = document.getElementById("img-btn");
+var student_image = document.getElementById("student-image");
+
+
+myInput.onfocus = function() {
+  document.getElementById("message").style.display = "block";
+}
+
+myInput.onblur = function() {
+  document.getElementById("message").style.display = "none";
+}
+
+myInput.onkeyup = function() {
+  // Validate lowercase letters
+  var lowerCaseLetters = /[a-z]/g;
+  if(myInput.value.match(lowerCaseLetters)) {  
+    letter.classList.remove("invalid");
+    letter.classList.add("valid");
+  } else {
+    letter.classList.remove("valid");
+    letter.classList.add("invalid");
+  }
+  
+  
+  var upperCaseLetters = /[A-Z]/g;
+  if(myInput.value.match(upperCaseLetters)) {  
+    capital.classList.remove("invalid");
+    capital.classList.add("valid");
+  } else {
+    capital.classList.remove("valid");
+    capital.classList.add("invalid");
+  }
+
+
+  var numbers = /[0-9]/g;
+  if(myInput.value.match(numbers)) {  
+    number.classList.remove("invalid");
+    number.classList.add("valid");
+  } else {
+    number.classList.remove("valid");
+    number.classList.add("invalid");
+  }
+  
+  if(myInput.value.length >= 8) {
+    length.classList.remove("invalid");
+    length.classList.add("valid");
+  } else {
+    length.classList.remove("valid");
+    length.classList.add("invalid");
+  }
+}
+
+function completionMessage(){
+  let fname  = document.getElementById('fname')
+  fname = fname.value;
+  let lname =  document.getElementById('lname')
+  lname = lname.value;
+  let usremail = document.getElementById('usremail')
+  usremail = usremail.value
+  let parentemail = document.getElementById('parentemail')
+  parentemail = parentemail.value
+  let psw = document.getElementById('psw')
+  psw = psw.value
+  if(fname===""||lname===""||usremail===""||psw==="" || img_btn.value==="") {
+    swal({
+      title: "Ohh no !!",
+      text: "Please fill all field",
+      icon: "error",
+      button: "ok",
+    });
+  }
+  else {
+      swal({
+      title: "Good job!",
+      text: "You Are Registered Successfully",
+      icon: "success",
+      button: "Yes",
+    });
+  }  
+}
+
+// code for uploading image
+img_btn.addEventListener('change',function(){
+  if(this.files && this.files[0]){
+    var reader = new FileReader();
+    reader.onload =(e)=>{
+      student_image.setAttribute("src",e.target.result);
+      student_image.style.display = "block";
+    }
+    reader.readAsDataURL(this.files[0]);
+  }
+})
+
+</script>
+
+    
